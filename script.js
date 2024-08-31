@@ -1,3 +1,4 @@
+// Handle the Google login response
 function handleCredentialResponse(response) {
     const data = jwt_decode(response.credential);
     console.log('User logged in:', data);
@@ -7,25 +8,34 @@ function handleCredentialResponse(response) {
 
     // Enable the "Add Elder" button after successful login
     document.getElementById('add-elder-btn').disabled = false;
+    document.getElementById('logout-btn').style.display = 'inline-block'; // Show logout button
 }
 
+// Initialize the Google API client
 function initializeGapiClient() {
     gapi.load('client', () => {
         gapi.client.init({
-            apiKey: 'AIzaSyA4fD1PwZ6iEbSRNB2Z3hMxnbOqYtmQQhw',
-            clientId: '865517828175-fcaan1ua4bgrf7biungvm99j3lpfgh36.apps.googleusercontent.com',
+            apiKey: 'YOUR_API_KEY', // Replace with your API Key
+            clientId: 'YOUR_CLIENT_ID', // Replace with your Client ID
             discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'],
-            scope: 'https://www.googleapis.com/auth/drive.file',
+            scope: 'openid email profile https://www.googleapis.com/auth/drive.file',
         }).then(() => {
             console.log('Google API client initialized.');
         });
     });
 }
 
+// Add elder button event
 document.getElementById('add-elder-btn').addEventListener('click', function () {
     addElderForm();
 });
 
+// Logout button event
+document.getElementById('logout-btn').addEventListener('click', function () {
+    signOut();
+});
+
+// Function to add elder form dynamically
 function addElderForm() {
     const eldersContainer = document.getElementById('elders-container');
 
@@ -207,10 +217,10 @@ function saveElderDetails(form, header, thumbnail) {
         const medicinePhoto = entry.querySelector('.medicine-photo').files[0];
 
         if (medicineName) {
-            medicines.push({
-                name: medicineName,
-                frequency: frequency === 'custom' ? `Custom: ${customTime}` : frequency,
-                photo: medicinePhoto
+            medicines.push({ 
+                name: medicineName, 
+                frequency: frequency === 'custom' ? `Custom: ${customTime}` : frequency, 
+                photo: medicinePhoto 
             });
         }
     });
@@ -242,4 +252,14 @@ function uploadDataToDrive(data) {
             console.log('File uploaded to Google Drive with ID:', data.id);
             alert('Elder details saved successfully!');
         });
+}
+
+// Sign out function
+function signOut() {
+    const auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(() => {
+        console.log('User signed out.');
+        document.getElementById('add-elder-btn').disabled = true; // Disable the add elder button
+        document.getElementById('logout-btn').style.display = 'none'; // Hide the logout button
+    });
 }
