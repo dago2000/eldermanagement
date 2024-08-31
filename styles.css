@@ -1,0 +1,77 @@
+/* Existing styles */
+
+.elder-details, .medicine-entry {
+    margin-bottom: 20px;
+}
+
+.elder-details input[type="text"],
+.elder-details input[type="number"],
+.elder-details input[type="file"],
+.medicine-entry select,
+.medicine-entry input[type="text"],
+.medicine-entry input[type="file"],
+.medicine-entry input[type="datetime-local"] {
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px;
+    width: calc(100% - 20px); /* Adjust for padding */
+    max-width: 400px; /* Optional: limit the width */
+}
+
+.photo-preview {
+    max-width: 100px;
+    max-height: 100px;
+    margin-top: 5px;
+    display: block;
+}
+
+.beautiful-btn {
+    padding: 15px 25px;
+    font-size: 16px;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.beautiful-btn:hover {
+    background-color: #45a049;
+}
+
+.elder-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    position: relative;
+}
+
+.elder-form-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.elder-photo-thumbnail {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 10px;
+}
+
+.elder-form-content {
+    display: none;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+}
