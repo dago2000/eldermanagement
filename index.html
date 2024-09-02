@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elder Management System</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Include Google Identity Services script -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <!-- Include Google API client library -->
-    <script async defer src="https://apis.google.com/js/api.js"></script>
+    <!-- Include Google APIs -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="865517828175-fcaan1ua4bgrf7biungvm99j3lpfgh36.apps.googleusercontent.com">
 </head>
 <body>
     <div class="container">
@@ -17,20 +16,12 @@
         </header>
 
         <main>
-            <!-- Google login button -->
-            <div id="g_id_onload"
-                 data-client_id="YOUR_GOOGLE_CLIENT_ID"
-                 data-context="signin"
-                 data-ux_mode="popup"
-                 data-callback="handleCredentialResponse"
-                 data-auto_prompt="false">
-            </div>
-            <div class="g_id_signin" data-type="standard"></div>
+            <!-- Google Sign-In Button -->
+            <div id="g-signin2" class="g-signin2" data-onsuccess="onSignIn"></div>
+            <button id="logout-btn" style="display:none;" class="beautiful-btn">Logout</button>
 
             <!-- Button to add a new elder -->
             <button id="add-elder-btn" class="beautiful-btn" disabled>Add Elder</button>
-            <!-- Button to log out -->
-            <button id="logout-btn" class="beautiful-btn" style="display:none;">Logout</button>
 
             <!-- Container for elder forms -->
             <div id="elders-container"></div>
@@ -40,6 +31,7 @@
             <p>&copy; 2024 Elder Management System</p>
         </footer>
     </div>
+    <script src="https://apis.google.com/js/api.js" async defer></script>
     <script src="script.js"></script>
 </body>
 </html>
