@@ -73,3 +73,14 @@ header {
     border-top: none;
     border-radius: 0 0 5px 5px;
 }
+/* Existing styles */
+
+/* Add styles for Google Sign-In button */
+.g_id_signin {
+    margin: 20px 0;
+}
+
+/* Hide the add elder button initially */
+#add-elder-btn {
+    display: none;
+}
